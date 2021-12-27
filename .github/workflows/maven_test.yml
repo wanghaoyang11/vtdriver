@@ -12,7 +12,7 @@ on:
 jobs:
   services-test-job:
     runs-on: ubuntu-20.04
-#     container: ubuntu:latest
+    container: ubuntu:20.04
     services:
       mysql5719:
         image: mysql:5.7.19
