@@ -13,7 +13,7 @@ jobs:
   services-test-job:
     # 宿主机容器
     runs-on: ubuntu-20.04
-    # job运行所在的容器
+    # job运行所在的容器. 不写这一条, job就会在宿主机容器上跑, 实测apt install会有依赖问题
     container: ubuntu:20.04
     services:
       mysql5719:
@@ -33,7 +33,7 @@ jobs:
       - name: install mysql-client
         run: apt install -y mysql-client
       - name: Check
-        run: mysql -hlocalhost -P3306 -uroot -pmysql
+        run: mysql -h127.0.0.1 -P3306 -uroot -pmysql
 
 #   maven-test-job:
 #     runs-on: ubuntu-latest
