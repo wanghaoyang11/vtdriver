@@ -11,16 +11,20 @@ on:
 
 jobs:
   services-test-job:
+    # 宿主机容器
     runs-on: ubuntu-20.04
+    # job运行所在的容器
     container: ubuntu:20.04
     services:
       mysql5719:
+        # mysql服务容器使用的镜像
         image: mysql:5.7.19
         env:
           MYSQL_ROOT_PASSWORD: mysql
-        ports:
-          # Opens tcp port 3306 on the host and service container
-          - 3306:3306
+        # 在容器里跑job就不需要端口映射了
+#         ports:
+#           # Opens tcp port 3306 on the host and service container
+#           - 3306:3306
 
     steps:
       - name: Check out repository code
