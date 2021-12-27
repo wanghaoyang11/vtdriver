@@ -33,7 +33,7 @@ jobs:
       - name: install mysql-client
         run: apt install -y mysql-client
       - name: Check
-        run: mysql -h127.0.0.1 -P3306 -uroot -pmysql
+        run: mysql -hmysql5719 -P3306 -uroot -pmysql
 
 #   maven-test-job:
 #     runs-on: ubuntu-latest
