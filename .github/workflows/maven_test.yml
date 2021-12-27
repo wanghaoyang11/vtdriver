@@ -25,8 +25,9 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v2
+      - run: sudo apt update
+      - run: sudo apt install -f
       - name: install mysql-client
-        run: sudo apt install -f
       - run: sudo apt install -y mysql-client
       - name: Check
         run: mysql -h127.0.0.1 -P3306 -uroot -pmysql
