@@ -12,15 +12,23 @@ on:
 jobs:
   container-job:
     runs-on: ubuntu-latest
-    container: ubuntu:latest
+#     container: ubuntu:latest
     services:
       mysql5719:
         image: mysql:5.7.19
+        env:
+          MYSQL_ROOT_PASSWORD: mysql
+        ports:
+          # Opens tcp port 3306 on the host and service container
+          - 3306:3306
+
     steps:
       - name: Check out repository code
-        uses: actions/checkout@v2
+        uses: actions/checkout@v2.
+      - name: install mysql-client
+        run: apt install -y mysql-client
       - name: Check
-        run: mysql -h
+        run: mysql -h127.0.0.1 -P3306 -uroot -pmysql
 
 #   build_test:
 #     runs-on: ubuntu-latest
