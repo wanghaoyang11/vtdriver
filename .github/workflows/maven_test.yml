@@ -10,7 +10,7 @@ on:
     branches: [ main ]
 
 jobs:
-  container-job:
+  services-test-job:
     runs-on: ubuntu-20.04
 #     container: ubuntu:latest
     services:
@@ -30,7 +30,7 @@ jobs:
       - name: Check
         run: mysql -h127.0.0.1 -P3306 -uroot -pmysql
 
-#   build_test:
+#   maven-test-job:
 #     runs-on: ubuntu-latest
 
 #     steps:
