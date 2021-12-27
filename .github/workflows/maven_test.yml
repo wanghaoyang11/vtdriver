@@ -26,7 +26,7 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v2
       - name: install mysql-client
-        run: sudo apt-get install -y mysql-client-8.0
+        run: sudo apt-get install -y mysql-common mysql-client-8.0
       - name: Check
         run: mysql -h127.0.0.1 -P3306 -uroot -pmysql
 
