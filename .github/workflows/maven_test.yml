@@ -28,7 +28,7 @@ jobs:
       - run: sudo apt update
       - run: sudo apt install -f
       - name: install mysql-client
-      - run: sudo apt install -y mysql-client
+        run: sudo apt install -y mysql-client
       - name: Check
         run: mysql -h127.0.0.1 -P3306 -uroot -pmysql
 
