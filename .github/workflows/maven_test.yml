@@ -12,20 +12,15 @@ on:
 jobs:
   container-job:
     runs-on: ubuntu-latest
-    container: node:10.18-jessie
+    container: ubuntu:latest
     services:
-      postgres:
-        image: postgres
+      mysql5719:
+        image: mysql:5.7.19
     steps:
       - name: Check out repository code
         uses: actions/checkout@v2
-      - name: Install dependencies
-        run: npm ci
-      - name: Connect to PostgreSQL
-        run: node client.js
-        env:
-          POSTGRES_HOST: postgres
-          POSTGRES_PORT: 5432
+      - name: Check
+        run: mysql -h
 
 #   build_test:
 #     runs-on: ubuntu-latest
