@@ -30,11 +30,10 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v2
       - run: apt update
-      - run: apt install -f
       - name: install mysql-client
         run: apt install -y mysql-client
       - name: Check
-        run: mysql -h127.0.0.1 -P3306 -uroot -pmysql
+        run: mysql -hlocalhost -P3306 -uroot -pmysql
 
 #   maven-test-job:
 #     runs-on: ubuntu-latest
