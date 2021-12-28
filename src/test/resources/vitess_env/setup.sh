@@ -38,9 +38,9 @@ cp -r ../../vtdriver ./examples/local/
 cp -r ../../Dockerfile.vtdriver ./docker/local/
 
 # add target 'docker_vtdriver' in Makefile
-echo -e '\ndocker_vtdriver:\n\t${call build_docker_image,docker/local/Dockerfile.vtdriver,vitess/vtdriver-env}' >> ./Makefile
+echo -e '\ndocker_vtdriver:\n\t${call build_docker_image,docker/local/Dockerfile.vtdriver,vitess/vtdriver-env}\n' >> ./Makefile
 
 echo "build docker image 'vitess/vtdriver-env'"
-#make docker_vtdriver
+make docker_vtdriver
 
 echo "Done."
