@@ -9,7 +9,7 @@ name: Java CI with Maven
 #   pull_request:
 #     branches: [ main ]
 
-on: [push,pull_request]
+on: [push]
 
 jobs:
   services-test-job:
