@@ -19,7 +19,12 @@ set -e
 # which vitess release tag to use
 release='v11.0.2'
 
-mkdir build_vitess
+if [ ! -d "build_vitess" ];then
+  mkdir build_vitess
+else
+  rm -rf build_vitess
+fi
+
 cd build_vitess
 
 echo "Downloading vitess source from github..."
