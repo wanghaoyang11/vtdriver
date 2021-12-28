@@ -16,13 +16,17 @@
 
 set -e
 
+# which vitess release tag to use
+release='v11.0.2'
+
 mkdir build_vitess
 cd build_vitess
 
 echo "Downloading vitess source from github..."
 git --version >/dev/null 2>&1 || fail "git is not installed"
 git clone git@github.com:vitessio/vitess.git
-git checkout v11.0.2 # 用11.0.2版本
+echo "using branch/tag '${release}'"
+git checkout ${release}
 
 cp ./vtdriver ./vitess/examples/local/
 cp ./Dockerfile.vtdriver ./vitess/docker/local/
