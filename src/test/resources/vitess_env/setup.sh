@@ -24,6 +24,7 @@ if [ ! -d "build_vitess" ];then
   mkdir build_vitess
 else
   rm -rf build_vitess
+  mkdir build_vitess
 fi
 
 cd build_vitess
