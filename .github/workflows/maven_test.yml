@@ -22,7 +22,7 @@ jobs:
         # vitess1202服务容器使用的镜像
         image: wanghy1995/vitess:vtdriver-env
         env:
-          DOCKER_HOST_IP: 127.0.0.1
+          DOCKER_HOST_IP: vitess1202
         # 在容器里跑job就不需要端口映射了
 #         ports:
 #           - 3306:3306
@@ -34,7 +34,7 @@ jobs:
       - name: install mysql-client
         run: apt install -y mysql-client
       - name: Check
-        run: mysql -h127.0.0.1 -P15306 -umysql_user -pmysql_password
+        run: mysql -hvitess1202 -P15306 -umysql_user -pmysql_password
 
 #   maven-test-job:
 #     runs-on: ubuntu-latest
