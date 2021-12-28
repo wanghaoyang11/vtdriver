@@ -17,7 +17,7 @@
 set -e
 
 # which vitess release tag to use
-release='v11.0.2'
+release='v12.0.2'
 echo "using branch/tag '${release}'"
 
 if [ ! -d "build_vitess" ];then
