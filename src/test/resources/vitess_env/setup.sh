@@ -18,6 +18,7 @@ set -e
 
 # which vitess release tag to use
 release='v11.0.2'
+echo "using branch/tag '${release}'"
 
 if [ ! -d "build_vitess" ];then
   mkdir build_vitess
@@ -26,21 +27,19 @@ else
 fi
 
 cd build_vitess
-
 echo "Downloading vitess source from github..."
 git --version >/dev/null 2>&1 || fail "git is not installed"
 git clone git@github.com:vitessio/vitess.git
-echo "using branch/tag '${release}'"
+cd vitess
 git checkout ${release}
 
-cp ./vtdriver ./vitess/examples/local/
-cp ./Dockerfile.vtdriver ./vitess/docker/local/
+cp ../../vtdriver ./examples/local/
+cp ../../Dockerfile.vtdriver ./docker/local/
 
 # add target 'docker_vtdriver' in Makefile
 echo -e '\ndocker_vtdriver:\n\t${call build_docker_image,docker/local/Dockerfile.vtdriver,vitess/vtdriver-env}' >> ./vitess/Makefile
 
 echo "build docker image 'vitess/vtdriver-env'"
-cd vitess
 make docker_vtdriver
 
 echo "Done."
