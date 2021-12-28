@@ -21,6 +21,8 @@ jobs:
       vitess1202:
         # vitess1202服务容器使用的镜像
         image: wanghy1995/vitess:vtdriver-env
+        options:
+          --health-cmd="mysqladmin ping -h127.0.0.1 -P15306" --health-interval=5s --health-timeout=2s --health-retries=5
         env:
           DOCKER_HOST_IP: vitess1202
         # 在容器里跑job就不需要端口映射了
