@@ -16,11 +16,11 @@ jobs:
     # job运行所在的容器. 不写这一条, job就会在宿主机容器上跑, 实测apt install会有依赖问题
     container: ubuntu:20.04
     services:
-      mysql5719:
-        # mysql服务容器使用的镜像
-        image: mysql:5.7.19
+      vitess1202:
+        # vitess1202服务容器使用的镜像
+        image: wanghy1995/vitess:vtdriver-env
         env:
-          MYSQL_ROOT_PASSWORD: mysql
+          DOCKER_HOST_IP: 127.0.0.1
         # 在容器里跑job就不需要端口映射了
 #         ports:
 #           # Opens tcp port 3306 on the host and service container
@@ -33,7 +33,7 @@ jobs:
       - name: install mysql-client
         run: apt install -y mysql-client
       - name: Check
-        run: mysql -hmysql5719 -P3306 -uroot -pmysql --ssl-mode=DISABLED
+        run: mysql -h127.0.0.1 -P15306 -umysql_user -pmysql_password
 
 #   maven-test-job:
 #     runs-on: ubuntu-latest
