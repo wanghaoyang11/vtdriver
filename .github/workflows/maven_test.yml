@@ -23,7 +23,6 @@ jobs:
           DOCKER_HOST_IP: 127.0.0.1
         # 在容器里跑job就不需要端口映射了
 #         ports:
-#           # Opens tcp port 3306 on the host and service container
 #           - 3306:3306
 
     steps:
