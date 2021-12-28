@@ -32,6 +32,6 @@ echo -e '\ndocker_vtdriver:\n\t${call build_docker_image,docker/local/Dockerfile
 
 echo "build docker image 'vitess/vtdriver-env'"
 cd vitess
-make docker_vtdriver
+#make docker_vtdriver
 
 echo "Done."
