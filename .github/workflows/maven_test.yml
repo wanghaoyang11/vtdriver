@@ -20,7 +20,7 @@ jobs:
     services:
       vitess1202:
         # vitess1202服务容器使用的镜像
-        image: wanghy1995/vitess:vtdriver-env
+        image: wanghy1995/vtdriver-env:latest
         options:
           --health-cmd="mysqladmin ping -hlocalhost -P15306" --health-interval=5s --health-timeout=2s --health-retries=5
         env:
