@@ -39,9 +39,9 @@ jobs:
       - name: install mysql-client
         run: apt install -y mysql-client
       - name: Waiting for vitess serving
-        run: sleep 600
+        run: sleep 120
       - name: Check
-        run: mysql -hvitess1202 -P15306 -umysql_user -pmysql_password
+        run: mysql -hvitess1202 -P17100 -uvtdriver -pvtdriver_password
 
 #   maven-test-job:
 #     runs-on: ubuntu-latest
