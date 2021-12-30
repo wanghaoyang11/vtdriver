@@ -27,7 +27,7 @@ jobs:
           DOCKER_HOST_IP: 172.17.0.2
         # 在容器里跑job就不需要端口映射了
 #         ports:
-#           - 3306:3306
+#           - 15306:15306
 
     steps:
       - name: Check out repository code
