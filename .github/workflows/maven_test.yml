@@ -24,7 +24,10 @@ jobs:
         options:
           --health-cmd="mysqladmin ping -h127.0.0.1 -P15306" --health-interval=5s --health-timeout=2s --health-retries=100
         env:
-          DOCKER_HOST_IP: 172.17.0.2
+          ONE_SHARD_ONLY: true
+#          HOST_IP: 127.0.0.1
+#          TWO_SHARD_ONLY: true
+#          NO_VTGATE: true
         # 在容器里跑job就不需要端口映射了
 #         ports:
 #           - 15306:15306
