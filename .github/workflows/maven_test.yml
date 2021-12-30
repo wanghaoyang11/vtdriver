@@ -37,9 +37,9 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v2
-      - run: apt-get update
+      - run: sudo apt-get update
       - name: install mysql-client
-        run: apt-get install -y mysql-client
+        run: sudo apt-get install -y mysql-client
       - name: Waiting for vitess serving
         run: echo $VITESS_ENV_HOST
         env:
