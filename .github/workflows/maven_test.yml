@@ -3,46 +3,27 @@
 
 name: Java CI with Maven
 
-# on:
-#   push:
-#     branches: [ main ]
-#   pull_request:
-#     branches: [ main ]
-
-on: [push]
+on:
+  push:
+    branches: [ main, github_dev ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
   services-test-job:
     runs-on: ubuntu-20.04
     container: ubuntu:20.04
-#     services:
-#       vitess1202:
-#         image: wanghy1995/vtdriver-env:latest
-#         options: >-
-#           --health-cmd "mysqladmin ping -h127.0.0.1 -P17100 -uvtdriver -pvtdriver_password"
-#           --health-interval 20s
-#           --health-timeout 5s
-#           --health-retries 5
-#         env:
-#           ONE_SHARD_ONLY: true
-#           HOST_IP: 127.0.0.1
-#           NO_VTGATE: true
-#         ports:
-#           - 17100:17100
-
     services:
-      mysql:
-        image: mysql
-        env:
-          MYSQL_ROOT_PASSWORD: mysql
+      vitess1202:
+        image: wanghy1995/vtdriver-env:latest
         options: >-
-          --health-cmd "mysqladmin ping -h127.0.0.1 -P3306 -uroot -pmysql"
-          --health-interval 20s
-          --health-timeout 5s
-          --health-retries 2
-#         ports:
-#           # Opens tcp port 3306 on the host and service container
-#           - 3306:3306
+          --health-cmd "mysqladmin ping -h127.0.0.1 -P15306 -umysql_user -pmysql_password"
+          --health-interval 30s
+          --health-timeout 10s
+          --health-retries 10
+        env:
+          ONE_SHARD_ONLY: true
+          HOST_IP: 127.0.0.1
 
     steps:
       - name: Check out repository code
@@ -51,7 +32,7 @@ jobs:
       - name: install mysql-client
         run: apt install -y mysql-client
       - name: Check
-        run: mysql -hmysql -P3306 -uroot -pmysql
+        run: mysql -hvitess1202 -P15306 -umysql_user -pmysql_password
 
 #   maven-test-job:
 #     runs-on: ubuntu-latest
