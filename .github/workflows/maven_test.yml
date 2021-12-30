@@ -22,7 +22,7 @@ jobs:
         # vitess1202服务容器使用的镜像
         image: wanghy1995/vtdriver-env:latest
         options: >-
-          --health-cmd "mysqladmin ping -h127.0.0.1 -P15306"
+          --health-cmd "etcdctl --endpoints http://localhost:2379 ls"
           --health-interval 10s
           --health-timeout 5s
           --health-retries 5
