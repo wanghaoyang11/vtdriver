@@ -22,15 +22,15 @@ jobs:
         # vitess1202服务容器使用的镜像
         image: wanghy1995/vtdriver-env:latest
         options: >-
-          --health-cmd "etcdctl --endpoints http://localhost:2379 ls"
-          --health-interval 10s
+          --health-cmd "mysqladmin ping -h127.0.0.1 -P17100 -uvtdriver -pvtdriver_password"
+          --health-interval 20s
           --health-timeout 5s
           --health-retries 5
         env:
           ONE_SHARD_ONLY: true
           HOST_IP: 127.0.0.1
 #          TWO_SHARD_ONLY: true
-#          NO_VTGATE: true
+          NO_VTGATE: true
         # 在容器里跑job就不需要端口映射了
 #         ports:
 #           - 15306:15306
@@ -42,7 +42,10 @@ jobs:
       - name: install mysql-client
         run: apt install -y mysql-client
       - name: Waiting for vitess serving
-        run: sleep 120
+        run: echo $VITESS_ENV_HOST
+        env:
+          VITESS_ENV_HOST: vitess1202
+          VITESS_ENV_PORT: 17100
       - name: Check
         run: mysql -hvitess1202 -P17100 -uvtdriver -pvtdriver_password
 
