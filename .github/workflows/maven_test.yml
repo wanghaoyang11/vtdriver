@@ -31,8 +31,8 @@ jobs:
 #           - 17100:17100
 
     services:
-      mysql5719:
-        image: mysql:5.7.19
+      mysql:
+        image: mysql
         env:
           MYSQL_ROOT_PASSWORD: mysql
 #         ports:
@@ -46,7 +46,7 @@ jobs:
       - name: install mysql-client
         run: sudo apt-get install -y mysql-client
       - name: Check
-        run: mysql -hvitess1202 -P3306 -uroot -pmysql
+        run: mysql -hmysql -P3306 -uroot -pmysql
 
 #   maven-test-job:
 #     runs-on: ubuntu-latest
