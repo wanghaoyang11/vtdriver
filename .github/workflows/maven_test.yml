@@ -22,7 +22,7 @@ jobs:
         # vitess1202服务容器使用的镜像
         image: wanghy1995/vtdriver-env:latest
         options:
-          --health-cmd="mysqladmin ping -h127.0.0.1 -P15306" --health-interval=30s --health-timeout=10s --health-retries=10
+          --health-cmd="mysqladmin ping -h127.0.0.1 -P15100" --health-interval=30s --health-timeout=10s --health-retries=10
         env:
           ONE_SHARD_ONLY: true
 #          HOST_IP: 127.0.0.1
