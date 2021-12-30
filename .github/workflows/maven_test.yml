@@ -13,8 +13,8 @@ on: [push]
 
 jobs:
   services-test-job:
-    runs-on: ubuntu-latest
-    container: ubuntu-latest
+    runs-on: ubuntu-20.04
+    container: ubuntu-20.04
 #     services:
 #       vitess1202:
 #         image: wanghy1995/vtdriver-env:latest
