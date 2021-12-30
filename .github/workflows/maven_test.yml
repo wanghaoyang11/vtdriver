@@ -15,7 +15,7 @@ jobs:
   services-test-job:
     # 宿主机容器
     runs-on: macos-latest
-    container: ubuntu:20.04
+    container: ubuntu-latest
     services:
       vitess1202:
         # vitess1202服务容器使用的镜像
@@ -28,11 +28,9 @@ jobs:
         env:
           ONE_SHARD_ONLY: true
           HOST_IP: 127.0.0.1
-#          TWO_SHARD_ONLY: true
           NO_VTGATE: true
-#         ports:
-#           - 15306:15306
-#           - 17100:17100
+        ports:
+          - 17100:17100
 
     steps:
       - name: Check out repository code
