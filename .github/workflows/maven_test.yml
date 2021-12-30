@@ -14,7 +14,7 @@ on: [push]
 jobs:
   services-test-job:
     # 宿主机容器
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
     container: ubuntu-latest
     services:
       vitess1202:
