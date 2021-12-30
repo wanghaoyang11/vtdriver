@@ -28,7 +28,7 @@ jobs:
           --health-retries 5
         env:
           ONE_SHARD_ONLY: true
-#          HOST_IP: 127.0.0.1
+          HOST_IP: 127.0.0.1
 #          TWO_SHARD_ONLY: true
 #          NO_VTGATE: true
         # 在容器里跑job就不需要端口映射了
