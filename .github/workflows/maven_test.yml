@@ -15,16 +15,16 @@ jobs:
   services-test-job:
     # 宿主机容器
     runs-on: ubuntu-latest
-    container: ubuntu-latest
+#     container: ubuntu-latest
     services:
       vitess1202:
         # vitess1202服务容器使用的镜像
         image: wanghy1995/vtdriver-env:latest
-        options: >-
-          --health-cmd "mysqladmin ping -h127.0.0.1 -P17100 -uvtdriver -pvtdriver_password"
-          --health-interval 20s
-          --health-timeout 5s
-          --health-retries 5
+#         options: >-
+#           --health-cmd "mysqladmin ping -h127.0.0.1 -P17100 -uvtdriver -pvtdriver_password"
+#           --health-interval 20s
+#           --health-timeout 5s
+#           --health-retries 5
         env:
           ONE_SHARD_ONLY: true
           HOST_IP: 127.0.0.1
@@ -35,16 +35,16 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v2
-      - run: sudo apt-get update
-      - name: install mysql-client
-        run: sudo apt-get install -y mysql-client
+#       - run: sudo apt-get update
+#       - name: install mysql-client
+#         run: sudo apt-get install -y mysql-client
       - name: Waiting for vitess serving
         run: echo $VITESS_ENV_HOST
         env:
           VITESS_ENV_HOST: vitess1202
           VITESS_ENV_PORT: 17100
-      - name: Check
-        run: mysql -hvitess1202 -P17100 -uvtdriver -pvtdriver_password
+#       - name: Check
+#         run: mysql -hvitess1202 -P17100 -uvtdriver -pvtdriver_password
 
 #   maven-test-job:
 #     runs-on: ubuntu-latest
