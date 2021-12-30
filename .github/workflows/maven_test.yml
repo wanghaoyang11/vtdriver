@@ -15,32 +15,31 @@ jobs:
   services-test-job:
     # 宿主机容器
     runs-on: ubuntu-20.04
-    # job运行所在的容器. 不写这一条, job就会在宿主机容器上跑, 实测apt install会有依赖问题
-    container: ubuntu:20.04
+#     container: ubuntu:20.04
     services:
       vitess1202:
         # vitess1202服务容器使用的镜像
         image: wanghy1995/vtdriver-env:latest
-        options: >-
-          --health-cmd "mysqladmin ping -h127.0.0.1 -P17100 -uvtdriver -pvtdriver_password"
-          --health-interval 20s
-          --health-timeout 5s
-          --health-retries 5
+#         options: >-
+#           --health-cmd "mysqladmin ping -h127.0.0.1 -P17100 -uvtdriver -pvtdriver_password"
+#           --health-interval 20s
+#           --health-timeout 5s
+#           --health-retries 5
         env:
           ONE_SHARD_ONLY: true
           HOST_IP: 127.0.0.1
 #          TWO_SHARD_ONLY: true
           NO_VTGATE: true
-        # 在容器里跑job就不需要端口映射了
-#         ports:
-#           - 15306:15306
+        ports:
+          - 15306:15306
+          - 17100:17100
 
     steps:
       - name: Check out repository code
         uses: actions/checkout@v2
-      - run: apt update
+      - run: apt-get update
       - name: install mysql-client
-        run: apt install -y mysql-client
+        run: apt-get install -y mysql-client
       - name: Waiting for vitess serving
         run: echo $VITESS_ENV_HOST
         env:
